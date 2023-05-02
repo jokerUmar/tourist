@@ -59,7 +59,7 @@ function Header() {
             className={`header_item header_item2 is_active `}
           >
             <FontAwesomeIcon icon={faHouse} />
-            <p>bosh sahifa</p>
+            <p>Bosh sahifa</p>
           </NavLink>
 
           <NavLink
@@ -128,7 +128,7 @@ function Header() {
             className={`header_item header_item5}`}
           >
             <FontAwesomeIcon icon={faAddressBook} />
-            <p>bog'lanish</p>
+            <p>Bog'lanish</p>
           </NavLink>
 
           <NavLink
@@ -144,7 +144,7 @@ function Header() {
             className={`header_item header_item6}`}
           >
             <FontAwesomeIcon style={{width:"80px"}} icon={faCartShopping} />
-            <p>savat</p>
+            <p>Savat</p>
           </NavLink>
 
 

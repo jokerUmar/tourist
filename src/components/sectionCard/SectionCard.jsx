@@ -1,20 +1,27 @@
-import React from 'react'
-import "./section-card.css"
+import React from "react";
+import "./section-card.css";
 import { DataContext } from "../context/DataContext";
-import { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
-
+import { useContext } from "react";
+import { NavLink } from "react-router-dom";
+import { ArrayDataContext } from "../context/ArrayDataContext";
 
 function SectionCard() {
+  let { data } = useContext(DataContext);
+  let { arrayData, setArrayData } = useContext(ArrayDataContext);
 
-    let { data } = useContext(DataContext);
+  function handleMarket(e) {
+    if (!arrayData.includes(e)) {
+      setArrayData([...arrayData, e]);
+    }
+  }
 
 
   return (
-    <div className='cards'>
-        <div className="container">
+    <div className="cards">
+      <div className="container">
         <section className="card_section">
-          {data.map((element) => {
+          {
+          data.map((element) => {
             return (
               <div key={element.title} className="card-container">
                 <NavLink to="/xorijga-sayohat" className="hero-image-container">
@@ -29,18 +36,23 @@ function SectionCard() {
                     Xorijga sayohat
                   </p>
                   <p className="card__title">{element.title}ga sayohat</p>
-                  <p className="card_cost">{element.cost_str}</p>
+                  <p className="card_cost">{element.cost_str} UZS</p>
                   <div className="flex-row">
-                    <button className="card_btn">Savatchaga Qoshish</button>
+                    <button
+                      className="card_btn"
+                      onClick={() => handleMarket(element)}
+                    >
+                      Savatchaga Qoshish
+                    </button>
                   </div>
                 </div>
               </div>
             );
           })}
         </section>
-        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default SectionCard
+export default SectionCard;

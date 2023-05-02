@@ -6,6 +6,7 @@ import { DataProvider } from './components/context/DataContext'
 import { CarouselShowProvider } from './components/context/carouselShowContext'
 import { BarsProvider } from './components/context/barsContext'
 import { MouseMoveProvider } from './components/context/MouseMoveContext'
+import { ArrayDataProvider } from './components/context/ArrayDataContext'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 
@@ -15,7 +16,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <CarouselShowProvider>
         <BarsProvider>
           <MouseMoveProvider>
-            <App />
+            <ArrayDataProvider>
+              <App />
+            </ArrayDataProvider>
           </MouseMoveProvider>
         </BarsProvider>
       </CarouselShowProvider>

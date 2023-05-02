@@ -7,7 +7,6 @@ import { MouseMOveContext } from "../context/MouseMoveContext";
 function Travel() {
 
   let {moveMouse,setMoveMouse} = useContext(MouseMOveContext)
-
   
   function handleMove() {
     setMoveMouse(true)

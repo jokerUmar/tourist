@@ -24,11 +24,14 @@ import ImgCarousel from "../imgCarousel/ImgCarousel";
 import { CarouselShowContext } from "../context/carouselShowContext";
 import Services from "../services/Services";
 import SectionCard from "../sectionCard/SectionCard";
+import { ArrayDataContext } from "../context/ArrayDataContext";
 function MainV() {
   const [circleCount, setCircleCount] = useState(1);
 
   let { data } = useContext(DataContext);
   const { goToSlide, setGoToSlide } = useContext(CarouselShowContext);
+  let {arrayData,setArrayData} = useContext(ArrayDataContext)
+
 
   function handlePrev() {
     if (data.length - 1 != goToSlide) {
