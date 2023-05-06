@@ -1,8 +1,10 @@
 import Styles from "./Card.module.css";
 import React, { useState , useContext } from "react";
 import { useSpring, animated } from "react-spring";
+import { SummaContext } from "../context/SummaContext";
+import { ArrayDataContext } from "../context/ArrayDataContext";
 
-function Card({ imagen , title , cost_num , cost_str}) {
+function Card({ imagen,title,cost_str}) {
 
   const [show, setShown] = useState(false);
 
@@ -30,9 +32,6 @@ function Card({ imagen , title , cost_num , cost_str}) {
           {title}ga sayohat
         </p>
       </span>
-      <div className={Styles.btnn}>
-        <button className={Styles.card_btn}>savatchaga qoshish </button>
-      </div>
     </animated.div>
   );
 }

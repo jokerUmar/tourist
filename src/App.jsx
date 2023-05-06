@@ -13,6 +13,7 @@ import ContactPage from './pages/contactPage/ContactPage'
 import TravelForeign from './pages/travelForeign/TravelForeign'
 import TravelUzb from './pages/travelUzb/TravelUzb'
 import Market from './pages/market/Market'
+import Order from './pages/Order/Order'
 
 function App() {
 
@@ -54,10 +55,11 @@ function App() {
         <Route path='/travel/foreign' element={<TravelForeign/>} />
         <Route path='/travel/uzbekistan' element={<TravelUzb/>} />
         <Route path='/market' element={<Market/>} />
+        <Route path='/checkout' element={<Order/>} />
       </Routes>
 
       {
-        (pathname == "/travel" || pathname == "/contact" || pathname == "/market" || pathname == "/travel-foreign" || pathname == "/travel-uzbekistan") ? "" : <Contact/>
+        (pathname == "/travel" || pathname == "/contact" || pathname == "/market" || pathname == "/checkout" || pathname == "/travel-foreign" || pathname == "/travel-uzbekistan") ? "" : <Contact/>
       }
       
 

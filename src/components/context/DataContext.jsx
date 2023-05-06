@@ -8,15 +8,18 @@ import Card from "../Card/Card";
 export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
+
+
+
   let data = [
     {
-      id:0,
+      id: 0,
       type: "xorijga sayohat",
       title: "Tailand",
       cost_str: "16,850,000",
       cost_num: 16850000,
       img: tailand_img,
-      count:0,
+      count: 1,
       key: uuidv4(),
       content: (
         <Card
@@ -28,13 +31,13 @@ export const DataProvider = ({ children }) => {
       ),
     },
     {
-      id:1,
+      id: 1,
       type: "xorijga sayohat",
       title: "Misr",
       cost_str: "9,058,000",
       cost_num: 9058000,
       img: egypt_img,
-      count:0,
+      count: 1,
       key: uuidv4(),
       content: (
         <Card
@@ -46,13 +49,13 @@ export const DataProvider = ({ children }) => {
       ),
     },
     {
-      id:2,
+      id: 2,
       type: "xorijga sayohat",
       title: "Antalya",
       cost_str: "19,880,000",
       cost_num: 19880000,
       img: antalya_img,
-      count:0,
+      count: 1,
       key: uuidv4(),
       content: (
         <Card
@@ -64,13 +67,13 @@ export const DataProvider = ({ children }) => {
       ),
     },
     {
-      id:3,
+      id: 3,
       type: "xorijga sayohat",
       title: "Dubay",
       cost_str: "21,000,000",
       cost_num: 21000000,
       img: dubay_img,
-      count:0,
+      count: 1,
       key: uuidv4(),
       content: (
         <Card

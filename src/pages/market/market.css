@@ -180,12 +180,41 @@ input::-webkit-inner-spin-button {
     transition: 0.1s;
 }
 
+.empty-box {
+    text-align: center;
+    width: 60%;
+    margin: 0 auto;
+    padding: 20px 0 20px 0;
+}
+
+.empty-box p {
+    font-size: 20px;
+    color: #4c4c4c;
+    margin-bottom: 5px;
+}
+
+.empty_travel-box{
+    margin-top: 20px;
+}
+
+.empty-travel{
+    color: #2d3092!important;
+    border: 1px solid #f1f1f1!important;
+    border-radius: 0.5em;
+    line-height: 3em;
+    padding: 1em;
+    transition: .3s!important;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+}
 
 @media screen and (max-width:980px) {
     .all-box {
         flex-direction: column;
         justify-content: center;
     }
+
     .reducer-box {
         margin: auto;
         margin-top: 40px;
@@ -195,7 +224,7 @@ input::-webkit-inner-spin-button {
 
 
 @media screen and (max-width:700px) {
-    .market-box{
+    .market-box {
         width: 90%;
         margin-left: 20px;
     }
@@ -203,17 +232,17 @@ input::-webkit-inner-spin-button {
 
 
 @media screen and (max-width:525px) {
-    
-    .market-parent{
-        display: flex;  
+
+    .market-parent {
+        display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
     }
 
-    .market-box{
+    .market-box {
         flex-direction: column;
-        align-items:center;
+        align-items: center;
         justify-content: center;
         max-width: 300px;
         margin-bottom: 30px;
@@ -221,31 +250,39 @@ input::-webkit-inner-spin-button {
     }
 
 
-    
-    .market-box_left{
+
+    .market-box_left {
         flex-direction: column;
     }
-    .market-img{
+
+    .market-img {
         width: 300px;
     }
-    
+
     .market-box_left article {
         width: 100%;
         margin-top: 4px;
         margin-bottom: 10px;
     }
 
-    
-    
+
+
 }
 
 
+@media screen and (max-width:400px) {
+    .empty-travel{
+        font-size: 16px;
+        padding: 7px 5px;
+    }
+}
 @media screen and (max-width:355px) {
-    .market-box{
+    .market-box {
         max-width: 240px;
         width: 100%;
     }
-    .market-img{
+
+    .market-img {
         width: 240px;
     }
 }
