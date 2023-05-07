@@ -7,7 +7,7 @@ import { SummaContext } from "../../components/context/SummaContext";
 import { Link } from "react-router-dom";
 
 function Market() {
-  let { arrayData, setArrayData } = useContext(ArrayDataContext);
+  let { arrayData, setArrayData} = useContext(ArrayDataContext);
   let { reducer, setReducer } = useContext(SummaContext);
 
   function handleDelete(e) {
