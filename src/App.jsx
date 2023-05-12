@@ -55,18 +55,6 @@ function App() {
         <Route path="*" element={<PageNotFound />} />
       </Routes>
 
-      {/* {pathname == "/travel" ||
-      pathname == "/contact" ||
-      pathname == "/market" ||
-      pathname == "/checkout" ||
-      pathname == "/travel-foreign" ||
-      pathname == "/travel-uzbekistan" ? (
-        ""
-      ) : (
-        <Contact />
-        
-      )} */}
-
       {pathname == "/" || pathname == "/services" || pathname == "/about" ? (
         <Contact />
       ) : (
@@ -74,20 +62,18 @@ function App() {
       )}
 
       {pathname == "/" ||
-        pathname == "/services" ||
-        pathname == "/about" ||
-        pathname == "/travel" ||
-        pathname == "/contact" ||
-        pathname == "/market" ||
-        pathname == "/checkout" ||
-        pathname == "/travel-foreign" ||
-        pathname == "/travel-uzbekistan" 
-        
-        ?
+      pathname == "/services" ||
+      pathname == "/about" ||
+      pathname == "/travel" ||
+      pathname == "/contact" ||
+      pathname == "/market" ||
+      pathname == "/checkout" ||
+      pathname == "/travel-foreign" ||
+      pathname == "/travel-uzbekistan" ? (
         <Footer />
-        : ""
-      }
-
+      ) : (
+        ""
+      )}
     </div>
   );
 }

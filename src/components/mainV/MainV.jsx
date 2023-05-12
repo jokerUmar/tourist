@@ -7,30 +7,19 @@ import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
-import {
-  faMap,
-  faHotTub,
-  faStar,
-  faPassport,
-  faCar,
-  faPeopleArrows,
-  faHamburger,
-  faHotel,
-  faFile,
-} from "@fortawesome/free-solid-svg-icons";
-import ecoturizm from "../../assets/images/ecoturizm.jpg";
-import { NavLink } from "react-router-dom";
-import ImgCarousel from "../imgCarousel/ImgCarousel";
 import { CarouselShowContext } from "../context/carouselShowContext";
 import Services from "../services/Services";
 import SectionCard from "../sectionCard/SectionCard";
-import { ArrayDataContext } from "../context/ArrayDataContext";
+import { LangContext } from "../context/LangContext";
+import { lang } from "../../lang/Lang";
+
+
 function MainV() {
   const [circleCount, setCircleCount] = useState(1);
 
   let { data } = useContext(DataContext);
   const { goToSlide, setGoToSlide } = useContext(CarouselShowContext);
-  let {arrayData,setArrayData} = useContext(ArrayDataContext)
+  let { langData, setLangData } = useContext(LangContext);
 
 
   function handlePrev() {
@@ -106,7 +95,7 @@ function MainV() {
 
               <div className="text">
                 <div className="text-box">
-                  <h1>Birga dunyoni ko'ramiz</h1>
+                  <h1>{lang[langData].body.title}</h1>
                 </div>
               </div>
               <Carroussel
@@ -142,79 +131,10 @@ function MainV() {
       </section>
 
       <Services />
-      {/* 
-    <section className="ecoturizm">
-        <div className="container">
-            <img src={ecoturizm} className='eco_img' alt="" />
-            <div className="eco_box">
-                <h1>Ekoturizm</h1>
-                <article>
-                    Sayyohlik kompaniyalari ekoturlarni tashkil qilishda ko‘pincha nimani taklif qilishadi?
-                </article>
-                <p>Agar siz O‘zbekistonning go‘zal tabiati va noyob qo‘riqlanadigan hududlari, nodir hayvonlar va
-                    qushlar
-                    olamidan bahramand bo‘lishni istasangiz, mamlakatimizning milliy bog‘lari va qo‘riqxonalariga
-                    tashrif
-                    buyuring
-                </p>
-
-            </div>
-        </div>
-    </section> */}
+ 
 
       <SectionCard/>
 
-      {/* <section className="content">
-        <div className="container">
-            <h1>O'zbekiston haqida qiziqarli ma'lumotlar</h1>
-            <div className="line"></div>
-            <div className="content-box">
-                <div className="content_article">
-                    <div className="content_upper">
-                        <FontAwesomeIcon style={{color:"white"}} icon={faStar} />
-                    </div>
-                    <div className="content_body">
-                        <p>Birinchi tashrifingizdan bizning mamlakatimiz sizni yana va yana bu yerga kelishga undaydigan
-                            g‘ayrioddiy tuyg‘ularni uyg‘otad.</p>
-                    </div>
-                </div>
-                <div className="content_article">
-                    <div className="content_upper">
-                        <FontAwesomeIcon style={{color:"white"}} icon={faStar} />
-                    </div>
-                    <div className="content_body">
-                        <p>Toshkentda siz dunyodagi eng go'zal metroda yurishingiz yoki Usmon Qur'onning qadimiy
-                            qo'lyozmasini ko'rishingiz mumkin.</p>
-                    </div>
-                </div>
-                <div className="content_article">
-                    <div className="content_upper">
-                        <FontAwesomeIcon style={{color:"white"}} icon={faStar} />
-                    </div>
-                    <div className="content_body">
-                        <p> Toshkentda siz dunyodagi eng go'zal metroda yurishingiz yoki Usmon Qur'onning qadimiy
-                            qo'lyozmasini ko'rishingiz mumkin.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> */}
-
-      {/* <section className="youTube_content">
-        <article className="container">
-            <iframe  src="https://www.youtube.com/embed/vQVwkyn3-F8"
-                title="YouTube video player" frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen></iframe>
-        </article>  
-    </section> */}
-
-      {/* <div className="carousel">
-        <h1></h1>
-        <div className="container">
-            <ImgCarousel/>
-        </div>
-    </div> */}
     </>
   );
 }

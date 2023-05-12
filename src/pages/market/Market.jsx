@@ -5,10 +5,13 @@ import { faTrashCan, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { ArrayDataContext } from "../../components/context/ArrayDataContext";
 import { SummaContext } from "../../components/context/SummaContext";
 import { Link } from "react-router-dom";
+import { lang } from "../../lang/Lang";
+import { LangContext } from "../../components/context/LangContext";
 
 function Market() {
-  let { arrayData, setArrayData} = useContext(ArrayDataContext);
+  let { arrayData, setArrayData } = useContext(ArrayDataContext);
   let { reducer, setReducer } = useContext(SummaContext);
+  let { langData } = useContext(LangContext);
 
   function handleDelete(e) {
     let filterArr = arrayData.filter((fil) => fil.id != e.id);
@@ -35,19 +38,19 @@ function Market() {
 
   for (let i = 0; i < reverse_cost.length; i++) {
     const element = reverse_cost[i];
-    if ((i ) % 3 == 0 ) {
+    if (i % 3 == 0) {
       reverseNumArr.push(",");
       reverseNumArr.push(element);
     } else {
       reverseNumArr.push(element);
     }
   }
-  reverseNumArr.splice(0,1)
+  reverseNumArr.splice(0, 1);
 
   return (
     <div className="market">
       <div className="container">
-        <h1 className="market_title">Savat</h1>
+        <h1 className="market_title">{lang[langData].emptyBusket.title}</h1>
         {arrayData.length > 0 ? (
           <div className="all-box">
             <div className="market-parent">
@@ -57,7 +60,7 @@ function Market() {
                     <div className="market-box_left">
                       <img className="market-img" src={element.img} alt="" />
                       <article>
-                        <p> {element.title}ga sayohat</p>
+                        <p> {element.title_info}</p>
                         <span>uzs {element.cost_str}</span>
                       </article>
                     </div>
@@ -95,23 +98,27 @@ function Market() {
             </div>
             <div className="reducer-box">
               <div className="article">
-                <span className="reducer_text">jami : </span>
+                <span className="reducer_text">
+                  {lang[langData].checkout.all_cost} :{" "}
+                </span>
                 <span className="reducer_cost">
                   UZS {reverseNumArr.reverse().join("")}.00
                 </span>
               </div>
-              <Link to="/checkout" style={{textDecoration:"none"}}>
-                <button className="reducer_btn">Buyurtma berish</button>
+              <Link to="/checkout" style={{ textDecoration: "none" }}>
+                <button className="reducer_btn">
+                  {lang[langData].busket.btn_title}
+                </button>
               </Link>
             </div>
           </div>
         ) : (
           <div className="empty-box">
-            <p>Savatingiz boʻsh</p>
-            <p>Savatingizga qoʻshadigan sayohatlar shu yerda koʻrsatiladi.</p>
+            <p>{lang[langData].emptyBusket.empty_info}</p>
+            <p>{lang[langData].emptyBusket.info}</p>
             <div className="empty_travel-box">
               <Link to="/travel" className="empty-travel">
-                sayohatlar bo'limiga otish
+                {lang[langData].emptyBusket.link}
               </Link>
             </div>
           </div>

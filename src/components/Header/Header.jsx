@@ -3,6 +3,7 @@ import "./header.css";
 import logotip from "../../assets/images/logotip-img.png";
 import { NavLink, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { lang } from "../../lang/Lang";
 import {
   faAddressBook,
   faAddressCard,
@@ -11,21 +12,27 @@ import {
   faPlane,
   faTaxi,
   faXmark,
-  faCartShopping
+  faCartShopping,
 } from "@fortawesome/free-solid-svg-icons";
 import { BarsContext } from "../context/barsContext";
 import { DataContext } from "../context/DataContext";
 import { MouseMOveContext } from "../context/MouseMoveContext";
+import { LangContext } from "../context/LangContext";
 
 function Header() {
   let { bars, setBars } = useContext(BarsContext);
   let { moveMouse, setMoveMouse } = useContext(MouseMOveContext);
+  let { langData, setLangData } = useContext(LangContext);
 
   function handleMove() {
     setMoveMouse(true);
   }
   function handleLeave() {
     setMoveMouse(false);
+  }
+
+  function handleLang(e) {
+    setLangData(e.target.value);
   }
 
   return (
@@ -59,7 +66,7 @@ function Header() {
             className={`header_item header_item2 is_active `}
           >
             <FontAwesomeIcon icon={faHouse} />
-            <p>Bosh sahifa</p>
+            <p>{lang[langData].header.menu}</p>
           </NavLink>
 
           <NavLink
@@ -76,7 +83,7 @@ function Header() {
             className={`header_item header_item2}`}
           >
             <FontAwesomeIcon icon={faAddressCard} />
-            <p>Biz haqimizda</p>
+            <p>{lang[langData].header.about}</p>
           </NavLink>
 
           <NavLink
@@ -93,7 +100,7 @@ function Header() {
             className={`header_item header_item3}`}
           >
             <FontAwesomeIcon icon={faTaxi} />
-            <p>Xizmatlar</p>
+            <p>{lang[langData].header.service}</p>
           </NavLink>
 
           <NavLink
@@ -112,7 +119,7 @@ function Header() {
             className={`header_item header_item4 }`}
           >
             <FontAwesomeIcon icon={faPlane} />
-            <p>Sayohatlar</p>
+            <p>{lang[langData].header.travel}</p>
           </NavLink>
 
           <NavLink
@@ -128,7 +135,7 @@ function Header() {
             className={`header_item header_item5}`}
           >
             <FontAwesomeIcon icon={faAddressBook} />
-            <p>Bog'lanish</p>
+            <p>{lang[langData].header.contact}</p>
           </NavLink>
 
           <NavLink
@@ -138,21 +145,20 @@ function Header() {
                 transform: isActive ? "scale(1.1)" : "",
                 backgroundColor: isActive ? "#FF4E00" : "",
                 borderRadius: isActive ? "5px" : "",
-              };  
+              };
             }}
             to="/market"
             className={`header_item header_item6}`}
           >
-            <FontAwesomeIcon style={{width:"80px"}} icon={faCartShopping} />
-            <p>Savat</p>
+            <FontAwesomeIcon style={{ width: "80px" }} icon={faCartShopping} />
+            <p>{lang[langData].header.buscket}</p>
           </NavLink>
 
-
           <div className="header_item box">
-            <select>
-              <option value="uz">Uzbek</option>
-              <option value="ru">Russian</option>
-              <option value="en">English</option>
+            <select onChange={(e) => handleLang(e)}>
+              <option value="uz">Uzb</option>
+              <option value="ru">Rus</option>
+              <option value="en">Eng</option>
             </select>
           </div>
         </ul>

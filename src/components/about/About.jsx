@@ -1,13 +1,19 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import "./about.css"
+import { lang } from '../../lang/Lang'
+import { LangContext } from '../context/LangContext'
+
 function About() {
+
+    let {langData} = useContext(LangContext) 
+
 return (
 <section className='about_box'>
     <div className="container">
-        <h1 className='about_title'>Biz haqimizda</h1>
+        <h1 className='about_title'>{lang[langData].about.title}</h1>
         <p>
             <b>“UTOURIST GROUP” </b>
-            sayyohlik agentligi chiqish, kirish va ichki turizm yo‘nalishlarida faoliyat yuritadi, agentlik o‘zining salohiyatli turoperatorlariga ega, agentlik tomonidan mamlakat bo’ylab sayohat qilib bo’yicha 100 taga yaqin turistik marshrutlar ishlab chiqgan va shu asosida bugungi kunga qadar turistlarning dam olish vaqtlarini mazmunli va maroqli tashkil etish maqsadida jamoaviy va mustaqil sayohatlarni sifatli ravishda tashkil etib kelmoqda.
+            {lang[langData].about.info}
         </p>
      </div>
 </section>

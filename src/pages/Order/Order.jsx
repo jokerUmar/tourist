@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useContext } from "react";
+import React, { useState, useMemo, useContext, useRef } from "react";
 import Select from "react-select";
 import "./order.css";
 import countryList from "react-select-country-list";
@@ -6,22 +6,19 @@ import payme from "../../assets/images/payme.png";
 import { ArrayDataContext } from "../../components/context/ArrayDataContext";
 import { SummaContext } from "../../components/context/SummaContext";
 import PhoneInput from "react-phone-input-2";
+import { lang } from "../../lang/Lang";
+import { LangContext } from "../../components/context/LangContext";
+import { Link } from "react-router-dom";
 
 function Order() {
-  const { arrayData, setArrayData , soldAdmission,setSoldAdmission } = useContext(ArrayDataContext);
-  let { reducer, setReducer } = useContext(SummaContext);
-  const [data, setData] = useState("");
+  const { arrayData } = useContext(ArrayDataContext);
+  let { reducer } = useContext(SummaContext);
+  let { langData } = useContext(LangContext);
 
-  const [value, setValue] = useState("");
   const options = useMemo(() => countryList().getData(), []);
-
-  const changeHandler = (value) => {
-    setValue(value);
-  };
 
   let summa = reducer + 30000;
   let reverse_summa = summa.toString().split("").reverse();
-
   let reverse_cost = reducer.toString().split("").reverse();
   let reverseNumArr = [];
   let reverseSummaArr = [];
@@ -48,86 +45,184 @@ function Order() {
   }
   reverseSummaArr.splice(0, 1);
 
+  let inp = {
+    name: "",
+    surName: "",
+    companyName: "",
+    countryName: "",
+    streetHouseName: "",
+    streetApartName: "",
+    cityName: "",
+    regionName: "",
+    mailIndex: "",
+    telNumber: "",
+    emailAddress: "",
+  };
+
+  const [inputValue, setInputValue] = useState({
+    name: "",
+    surName: "",
+    companyName: "",
+    countryName: "",
+    streetHouseName: "",
+    streetApartName: "",
+    cityName: "",
+    regionName: "",
+    mailIndex: "",
+    telNumber: "",
+    emailAddress: "",
+  });
+
+  function handleInput(params, e) {
+    inputValue[params] = e;
+    setInputValue(inputValue);
+    console.log(inputValue);
+  }
+
+  function handleClick() {}
+
   return (
     <div className="order">
-      {
-        (arrayData.length > 0) ? 
+      {arrayData.length > 0 ? (
         <div className="container">
           <div className="order_box">
             <div className="order_box-left">
               <div className="order-personal">
                 <article>
-                  <label htmlFor="name">Ism *</label>
-                  <input id="name" type="text" />
+                  <label htmlFor="name">{lang[langData].checkout.name} *</label>
+                  <input
+                    id="name"
+                    type="text"
+                    onChange={(e) => handleInput("name", e.target.value)}
+                  />
+                  <p className="form_error">
+                    Ism kamida 1 ta harfdan iborat bo'lishi kerak
+                  </p>
                 </article>
 
                 <article>
-                  <label htmlFor="surname">Familiya *</label>
-                  <input type="text" id="surname" />
+                  <label htmlFor="surname">
+                    {lang[langData].checkout.surName} *
+                  </label>
+                  <input
+                    type="text"
+                    id="surname"
+                    onChange={(e) => handleInput("surName", e.target.value)}
+                  />
+                  <p className="form_error">
+                    familiya kamida 1 ta harfdan iborat bo'lishi kerak
+                  </p>
                 </article>
               </div>
 
               <div className="order-firma-name">
-                <label htmlFor="firma_name">Firma nomi (ixtiyoriy)</label>
-                <input type="text" id="firma_name" />
+                <label htmlFor="firma_name">
+                  {lang[langData].checkout.FirmaName}
+                </label>
+                <input
+                  type="text"
+                  id="firma_name"
+                  onChange={(e) => handleInput("companyName", e.target.value)}
+                />
               </div>
 
               <div className="order-country-name">
-                <label htmlFor="country_name">Mamlakat / mintaqa *</label>
+                <label htmlFor="country_name">
+                  {lang[langData].checkout.country} *
+                </label>
                 <Select
                   options={options}
-                  value={value}
-                  onChange={changeHandler}
+                  onChange={(e) => handleInput("countryName", e.label)}
                 />
               </div>
 
               <div className="order-street_address">
-                <label htmlFor="street_addres">Ko'cha manzili *</label>
-                <input type="text" placeholder="Uy raqami va ko'cha nomi" />
+                <label htmlFor="street_addres">
+                  {lang[langData].checkout.streetAddres.label} *
+                </label>
                 <input
                   type="text"
-                  placeholder="Kvartira , ko'rpus va boshqalar. (ixtiyoriy)"
+                  placeholder={
+                    lang[langData].checkout.streetAddres.placeholderFirst
+                  }
+                  onChange={(e) =>
+                    handleInput("streetHouseName", e.target.value)
+                  }
+                />
+                <input
+                  type="text"
+                  placeholder={
+                    lang[langData].checkout.streetAddres.placeholderSecond
+                  }
+                  onChange={(e) =>
+                    handleInput("streetApartName", e.target.value)
+                  }
                 />
               </div>
 
               <div className="order-city-name">
-                <label htmlFor="city_name">Shahar / qishloq nomi *</label>
-                <input type="text" id="city_name" />
+                <label htmlFor="city_name">
+                  {lang[langData].checkout.cityName} *
+                </label>
+                <input
+                  type="text"
+                  id="city_name"
+                  onChange={(e) => handleInput("cityName", e.target.value)}
+                />
               </div>
 
               <div className="order-region-name">
-                <label htmlFor="region_name">Viloyat *</label>
-                <input type="text" id="region_name" />
+                <label htmlFor="region_name">
+                  {lang[langData].checkout.region} *
+                </label>
+                <input
+                  type="text"
+                  id="region_name"
+                  onChange={(e) => handleInput("regionName", e.target.value)}
+                />
               </div>
 
               <div className="order-mail-index">
-                <label htmlFor="mail_index">Pochta indeksi *</label>
-                <input type="text" id="mail_index" />
+                <label htmlFor="mail_index">
+                  {lang[langData].checkout.mailIndex} *
+                </label>
+                <input
+                  type="text"
+                  id="mail_index"
+                  onChange={(e) => handleInput("mailIndex", e.target.value)}
+                />
               </div>
 
               <div className="order-tel-number">
-                <label htmlFor="tel_number">Telefon raqami *</label>
+                <label htmlFor="tel_number">
+                  {lang[langData].checkout.telNum} *
+                </label>
                 <PhoneInput
                   country={"uz"}
                   inputStyle={{
                     maxWidth: "900px",
                     width: "100%",
                   }}
-                  onChange={(phone) => setData({ phone })}
+                  onChange={(e) => handleInput("telNumber", e)}
                 />
               </div>
-
               <div className="order-email-address">
-                <label htmlFor="email_addres">Email manzil *</label>
-                <input type="text" id="email_addres" />
+                <label htmlFor="email_addres">
+                  {lang[langData].checkout.emailAddres} *
+                </label>
+                <input
+                  type="text"
+                  id="email_addres"
+                  onChange={(e) => handleInput("emailAddress", e.target.value)}
+                />
               </div>
             </div>
 
             <div className="order_box-right">
               <h2 className="order_box-title">Buyurtmangiz</h2>
               <div className="order_box-head">
-                <p>Mahsulot</p>
-                <p>Jami:</p>
+                <p>{lang[langData].checkout.product}</p>
+                <p>{lang[langData].checkout.allName}:</p>
               </div>
 
               <div className="order_box-list">
@@ -135,7 +230,7 @@ function Order() {
                   return (
                     <div key={el.id} className="order_box-item">
                       <p>
-                        {el.title}ga sayohat ×{el.count}
+                        {el.title_info} ×{el.count}
                       </p>
                       <p>{el.cost_str}.00 UZS</p>
                     </div>
@@ -144,17 +239,17 @@ function Order() {
               </div>
 
               <div className="order_box-list-result">
-                <p>jami:</p>
+                <p>{lang[langData].checkout.allName}:</p>
                 <p>{reverseNumArr.reverse().join("")}.00 UZS</p>
               </div>
 
               <div className="order_box-delivery">
-                <p>Yetkazib berish</p>
+                <p>{lang[langData].checkout.delivery}</p>
                 <p>Yagona narx: 30,000.00 UZS</p>
               </div>
 
               <div className="order_box-result">
-                <p>jami:</p>
+                <p>{lang[langData].checkout.all_cost}:</p>
                 <p>{reverseSummaArr.reverse().join("")}.00 UZS</p>
               </div>
 
@@ -182,15 +277,27 @@ function Order() {
               </p>
 
               <div className="order-btn_box">
-                <button className="take-order-btn">
-                  Buyurtmani tasdiqlang
+                <button onClick={handleClick} className="take-order-btn">
+                  {lang[langData].checkout.btn}
                 </button>
               </div>
             </div>
           </div>
         </div>
-        : <h1>bu sahifani ishlatish uchun savat sahifasidan buyurtma qilish kerak</h1>
-      }
+      ) : (
+        <div className="empty_checkout-box">
+          <div className="container">
+            <h1 className="empty-checkout">
+              {lang[langData].emptyCheckout.info}
+            </h1>
+            <div className="empty_travel-box">
+              <Link to="/travel" className="empty-travel">
+                {lang[langData].emptyCheckout.link}
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

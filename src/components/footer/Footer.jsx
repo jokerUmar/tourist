@@ -1,37 +1,42 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import "./footer.css"
 import payme from "../../assets/images/payme.png"
 import click from "../../assets/images/click.png"
 import uzum from "../../assets/images/uzum.png"
 import logotip from "../../assets/images/logotip-img.png"
 import { Link } from 'react-router-dom'
+import { lang } from '../../lang/Lang'
+import { LangContext } from '../context/LangContext'
 
 function Footer() {
+
+    let {langData} = useContext(LangContext)
+
 return (
 <div className='footer'>
     <div className="container">
         <div className="left-box">
 
             <div className="about">
-                <h1>Biz haqimizda</h1>
-                <p>Toshkent shahar, Yashnobod tumani, Fidoyilar MFY, 22-xarbiy shaharcha 26-15 honadon</p>
+                <h1>{lang[langData].footer.about.title}</h1>
+                <p>{lang[langData].footer.about.info}</p>
                 <p>+99899 858-48-26</p>
                 <p>utourist@yandex.com</p>
             </div>
             <div className="section">
-                <h1>Bo’limlar</h1>
-                <Link className='footer-link' to="/about">biz haqimizda</Link>
-                <Link className='footer-link' to="/services">Xizmatlar</Link>
-                <Link className='footer-link' to="/travel">Sayohatlar</Link>
-                <Link className='footer-link' to="/faq">Hamkorlar</Link>
-                <Link className='footer-link' to="/contact">Bog’lanish</Link>
+                <h1>{lang[langData].footer.header.title}</h1>
+                <Link className='footer-link' to="/about">{lang[langData].footer.header.about}</Link>
+                <Link className='footer-link' to="/services">{lang[langData].footer.header.service}</Link>
+                <Link className='footer-link' to="/travel">{lang[langData].footer.header.travel}</Link>
+                <Link className='footer-link' to="/faq">{lang[langData].footer.header.partners}</Link>
+                <Link className='footer-link' to="/contact">{lang[langData].footer.header.contact}</Link>
             </div>
 
         </div>
         <div className="right-box">
 
             <div className="pay-type">
-                <h1>To’lov turlari</h1>
+                <h1>{lang[langData].footer.payme.title}</h1>
                 <img width="80px" src={payme} />
                 <img width="80px" src={click} />
                 <img width="80px" src={uzum} />

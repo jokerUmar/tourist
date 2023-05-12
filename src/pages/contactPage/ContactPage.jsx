@@ -4,15 +4,19 @@ import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot , faPhoneFlip ,faEnvelope } from '@fortawesome/free-solid-svg-icons'
-
+import { lang } from '../../lang/Lang'
+import { LangContext } from '../../components/context/LangContext'
+import { useContext } from 'react'
 function ContactPage() {
 
 const [data, setData] = useState("");
 
+let {langData} = useContext(LangContext)
+
 return (
 <div className='contact-page'>
     <div className="container">
-        <h1 className='contact_title-page'>Bog'lanish</h1>
+        <h1 className='contact_title-page'>{lang[langData].contact.title}</h1>
         <div className="contact-box-page">
 
             <div className="contact_box-left-page">
@@ -22,8 +26,7 @@ return (
 
                 <div className="contact-page_addres">
                     <FontAwesomeIcon icon={faLocationDot} />
-                    <p>Toshkent shahar, Yashnobod tumani,
-                        Fidoyilar MFY, 22-xarbiy shaharcha 26-15</p>
+                    <p>{lang[langData].footer.about.info}</p>
                 </div>
 
                 <div className="contact-page_call">
@@ -47,12 +50,12 @@ return (
 
         <div className="input-box">
             <div className="name-page">
-                <label htmlFor="name">Ismingiz</label>
+                <label htmlFor="name">{lang[langData].contact.name}</label>
                 <input type="text" className="input-page" />
             </div>
 
             <div className="phone-page">
-                <label htmlFor="phone">Telefon raqamingiz</label>
+                <label htmlFor="phone">{lang[langData].contact.tel_num}</label>
                 <PhoneInput country={'uz'} 
                  inputStyle={{
                     maxWidth:"450px",
@@ -68,11 +71,11 @@ return (
             </div>
 
             <div className="comment-page">
-                <label htmlFor="comment">fikringizni qoldiring</label>
+                <label htmlFor="comment">{lang[langData].contact.comment}</label>
                 <textarea className='comment-text-page' cols="40" rows="10"></textarea>
             </div>
 
-            <button className='contact_btn-page'>Yuborish</button>
+            <button className='contact_btn-page'>{lang[langData].contact.send}</button>
         </div>
 
     </div>

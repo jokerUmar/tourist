@@ -1,13 +1,15 @@
-import React,{useState} from 'react'
+import React,{useState,useContext} from 'react'
 import "./contact.css"  
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
-
+import { lang } from '../../lang/Lang'
+import { LangContext } from '../context/LangContext'
 
 function Contact() {
 
 const [data, setData] = useState("");
 
+let {langData} = useContext(LangContext)
 
 return (
 <div className='contact'>
@@ -16,15 +18,15 @@ return (
 
       <div className="contact_box-left">
 
-        <h1 className='contact_title'>Bog'lanish</h1>
+        <h1 className='contact_title'>{lang[langData].contact.title}</h1>
 
         <div className="name">
-          <label htmlFor="name">Ismingiz</label>
+          <label htmlFor="name">{lang[langData].contact.name}</label>
           <input type="text" className="input"  />
         </div>
 
         <div className="phone">
-          <label htmlFor="phone">Telefon raqamingiz</label>
+          <label htmlFor="phone">{lang[langData].contact.tel_num}</label>
           <PhoneInput country={'uz'} 
           inputStyle={{
             maxWidth:"410px",
@@ -35,11 +37,11 @@ return (
         </div>
 
         <div className="comment">
-          <label htmlFor="comment">fikringizni qoldiring</label>
+          <label htmlFor="comment">{lang[langData].contact.comment}</label>
           <textarea className='comment-text' cols="40" rows="10"></textarea>
         </div>
 
-        <button className='contact_btn'>Yuborish</button>
+        <button className='contact_btn'>{lang[langData].contact.send}</button>
 
       </div>
       <div className="contact_box-right">

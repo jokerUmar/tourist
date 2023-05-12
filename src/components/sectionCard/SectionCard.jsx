@@ -5,15 +5,18 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { ArrayDataContext } from "../context/ArrayDataContext";
 import { SummaContext } from "../context/SummaContext";
+import { lang } from "../../lang/Lang";
+import { LangContext } from "../context/LangContext";
 
 function SectionCard() {
   let { data } = useContext(DataContext);
   let { arrayData, setArrayData } = useContext(ArrayDataContext);
   let {reducer , setReducer} = useContext(SummaContext)
+  let {langData} = useContext(LangContext)
 
   function handleMarket(e) {
     if (!arrayData.includes(e)) {
-      setArrayData([...arrayData, e]);
+        setArrayData([...arrayData, e]);
       setReducer(reducer+e.cost_num)
     }
   }
@@ -37,16 +40,16 @@ function SectionCard() {
                 </NavLink>
                 <div className="main-content">
                   <p style={{ color: "white", fontSize: "16px" }}>
-                    Xorijga sayohat
+                  {lang[langData].cards.info}
                   </p>
-                  <p className="card__title">{element.title}ga sayohat</p>
+                  <p className="card__title">{element.title_info}</p>
                   <p className="card_cost">{element.cost_str} UZS</p>
                   <div className="flex-row">
                     <button
                       className="card_btn"
                       onClick={() => handleMarket(element)}
                     >
-                      Savatchaga Qoshish
+                      {lang[langData].cards.all}
                     </button>
                   </div>
                 </div>
