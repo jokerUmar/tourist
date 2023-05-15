@@ -45,41 +45,162 @@ function Order() {
   }
   reverseSummaArr.splice(0, 1);
 
-  let inp = {
-    name: "",
-    surName: "",
-    companyName: "",
-    countryName: "",
-    streetHouseName: "",
-    streetApartName: "",
-    cityName: "",
-    regionName: "",
-    mailIndex: "",
-    telNumber: "",
-    emailAddress: "",
-  };
-
   const [inputValue, setInputValue] = useState({
-    name: "",
-    surName: "",
-    companyName: "",
-    countryName: "",
-    streetHouseName: "",
-    streetApartName: "",
-    cityName: "",
-    regionName: "",
-    mailIndex: "",
-    telNumber: "",
-    emailAddress: "",
+    name: {
+      title: "",
+      bool: false,
+    },
+    surName: {
+      title: "",
+      bool: false,
+    },
+    companyName: {
+      title: "",
+      bool: true,
+    },
+    countryName: {
+      title: "",
+      bool: false,
+    },
+    streetHouseName: {
+      title: "",
+      bool: false,
+    },
+    streetApartName: {
+      title: "",
+      bool: false,
+    },
+    cityName: {
+      title: "",
+      bool: false,
+    },
+    regionName: {
+      title: "",
+      bool: false,
+    },
+    mailIndex: {
+      title: "",
+      bool: false,
+    },
+    telNumber: {
+      title: "",
+      bool: false,
+    },
+    emailAddress: {
+      title: "",
+      bool: false,
+    },
+    clicked: false,
+    payment: "",
   });
 
-  function handleInput(params, e) {
-    inputValue[params] = e;
-    setInputValue(inputValue);
-    console.log(inputValue);
+  function isValidEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
   }
 
-  function handleClick() {}
+  function handleInput(params, e) {
+    inputValue[params].title = e;
+
+    if (params == "name" && inputValue[params].title.length > 0) {
+      inputValue[params].bool = true;
+    } else if (params == "name" && inputValue[params].title.length == 0) {
+      inputValue[params].bool = false;
+    }
+
+    if (params == "surName" && inputValue[params].title.length > 0) {
+      inputValue[params].bool = true;
+    } else if (params == "surName" && inputValue[params].title.length == 0) {
+      inputValue[params].bool = false;
+    }
+    if (params == "companyName" && inputValue[params].title.length > 0) {
+      inputValue[params].bool = true;
+    } else if (
+      params == "companyName" &&
+      inputValue[params].title.length == 0
+    ) {
+      inputValue[params].bool = true;
+    }
+    if (params == "countryName" && inputValue[params].title.length > 0) {
+      inputValue[params].bool = true;
+    } else if (
+      params == "countryName" &&
+      inputValue[params].title.length == 0
+    ) {
+      inputValue[params].bool = false;
+    }
+    if (params == "streetHouseName" && inputValue[params].title.length > 0) {
+      inputValue[params].bool = true;
+    } else if (
+      params == "streetHouseName" &&
+      inputValue[params].title.length == 0
+    ) {
+      inputValue[params].bool = false;
+    }
+    if (params == "streetApartName" && inputValue[params].title.length > 0) {
+      inputValue[params].bool = true;
+    } else if (
+      params == "streetApartName" &&
+      inputValue[params].title.length == 0
+    ) {
+      inputValue[params].bool = false;
+    }
+    if (params == "cityName" && inputValue[params].title.length > 0) {
+      inputValue[params].bool = true;
+    } else if (params == "cityName" && inputValue[params].title.length == 0) {
+      inputValue[params].bool = false;
+    }
+    if (params == "regionName" && inputValue[params].title.length > 0) {
+      inputValue[params].bool = true;
+    } else if (params == "regionName" && inputValue[params].title.length == 0) {
+      inputValue[params].bool = false;
+    }
+    if (params == "mailIndex" && inputValue[params].title.length > 0) {
+      inputValue[params].bool = true;
+    } else if (params == "mailIndex" && inputValue[params].title.length == 0) {
+      inputValue[params].bool = false;
+    }
+    if (params == "telNumber" && inputValue[params].title.length > 3) {
+      inputValue[params].bool = true;
+    } else if (params == "telNumber" && inputValue[params].title.length == 0) {
+      inputValue[params].bool = false;
+    }
+    if (params == "emailAddress" && isValidEmail(inputValue[params].title)) {
+      inputValue[params].bool = true;
+      console.log("hehe");
+    } else if (
+      params == "emailAddress" &&
+      inputValue[params].title.length == 0
+    ) {
+      inputValue[params].bool = false;
+    }
+    setInputValue(JSON.parse(JSON.stringify(inputValue)));
+  }
+
+  function handleClick() {
+    if (
+      inputValue.name.bool == true &&
+      inputValue.surName.bool == true &&
+      inputValue.countryName.bool == true &&
+      inputValue.streetHouseName.bool == true &&
+      inputValue.streetApartName.bool == true &&
+      inputValue.cityName.bool == true &&
+      inputValue.regionName.bool == true &&
+      inputValue.mailIndex.bool == true &&
+      inputValue.telNumber.bool == true &&
+      inputValue.emailAddress.bool == true &&
+      inputValue.payment.length > 0 
+    ) {
+      inputValue.clicked = true;
+    } else {
+      inputValue.clicked = false;
+    }
+    setInputValue(JSON.parse(JSON.stringify(inputValue)));
+  }
+
+  function handlePay(params) {
+    inputValue.payment = params;
+    setInputValue({ ...inputValue });
+  }
 
   return (
     <div className="order">
@@ -95,9 +216,14 @@ function Order() {
                     type="text"
                     onChange={(e) => handleInput("name", e.target.value)}
                   />
-                  <p className="form_error">
-                    Ism kamida 1 ta harfdan iborat bo'lishi kerak
-                  </p>
+                  {inputValue.name.bool == false &&
+                  inputValue.clicked == false ? (
+                    <p className="form_error">
+                      Ism kamida 1 ta harfdan iborat bo'lishi kerak
+                    </p>
+                  ) : (
+                    ""
+                  )}
                 </article>
 
                 <article>
@@ -109,9 +235,14 @@ function Order() {
                     id="surname"
                     onChange={(e) => handleInput("surName", e.target.value)}
                   />
-                  <p className="form_error">
-                    familiya kamida 1 ta harfdan iborat bo'lishi kerak
-                  </p>
+                  {inputValue.surName.bool == false &&
+                  inputValue.clicked == false ? (
+                    <p className="form_error">
+                      familiya kamida 1 ta harfdan iborat bo'lishi kerak
+                    </p>
+                  ) : (
+                    ""
+                  )}
                 </article>
               </div>
 
@@ -134,6 +265,12 @@ function Order() {
                   options={options}
                   onChange={(e) => handleInput("countryName", e.label)}
                 />
+                {inputValue.countryName.bool == false &&
+                inputValue.clicked == false ? (
+                  <p className="form_error">davlat nomi kiritilishi kerak</p>
+                ) : (
+                  ""
+                )}
               </div>
 
               <div className="order-street_address">
@@ -149,6 +286,14 @@ function Order() {
                     handleInput("streetHouseName", e.target.value)
                   }
                 />
+                {inputValue.streetHouseName.bool == false &&
+                inputValue.clicked == false ? (
+                  <p className="form_error" style={{ marginBottom: "10px" }}>
+                    uy raqami yoki ko'cha nomi bo'lishi kerak
+                  </p>
+                ) : (
+                  ""
+                )}
                 <input
                   type="text"
                   placeholder={
@@ -158,6 +303,14 @@ function Order() {
                     handleInput("streetApartName", e.target.value)
                   }
                 />
+                {inputValue.streetApartName.bool == false &&
+                inputValue.clicked == false ? (
+                  <p style={{ marginBottom: "10px" }} className="form_error">
+                    kvartira korpus nomi bo'lishi kerak
+                  </p>
+                ) : (
+                  ""
+                )}
               </div>
 
               <div className="order-city-name">
@@ -169,6 +322,14 @@ function Order() {
                   id="city_name"
                   onChange={(e) => handleInput("cityName", e.target.value)}
                 />
+                {inputValue.cityName.bool == false &&
+                inputValue.clicked == false ? (
+                  <p className="form_error">
+                    shahar yoki qishloq nomi bo'lishi kerak
+                  </p>
+                ) : (
+                  ""
+                )}
               </div>
 
               <div className="order-region-name">
@@ -180,6 +341,12 @@ function Order() {
                   id="region_name"
                   onChange={(e) => handleInput("regionName", e.target.value)}
                 />
+                {inputValue.regionName.bool == false &&
+                inputValue.clicked == false ? (
+                  <p className="form_error">viloyat nomi bo'lishi kerak</p>
+                ) : (
+                  ""
+                )}
               </div>
 
               <div className="order-mail-index">
@@ -191,6 +358,12 @@ function Order() {
                   id="mail_index"
                   onChange={(e) => handleInput("mailIndex", e.target.value)}
                 />
+                {inputValue.mailIndex.bool == false &&
+                inputValue.clicked == false ? (
+                  <p className="form_error">pochta indeksi bo'lishi kerak</p>
+                ) : (
+                  ""
+                )}
               </div>
 
               <div className="order-tel-number">
@@ -205,6 +378,12 @@ function Order() {
                   }}
                   onChange={(e) => handleInput("telNumber", e)}
                 />
+                {inputValue.telNumber.bool == false &&
+                inputValue.clicked == false ? (
+                  <p className="form_error">telefon raqami bo'lishi kerak</p>
+                ) : (
+                  ""
+                )}
               </div>
               <div className="order-email-address">
                 <label htmlFor="email_addres">
@@ -215,6 +394,12 @@ function Order() {
                   id="email_addres"
                   onChange={(e) => handleInput("emailAddress", e.target.value)}
                 />
+                {inputValue.emailAddress.bool == false &&
+                inputValue.clicked == false ? (
+                  <p className="form_error">emailni to'gri kiriting</p>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
 
@@ -255,19 +440,37 @@ function Order() {
 
               <div className="control">
                 <label className="radio">
-                  <input type="radio" name="foobar" className="off" />
+                  <input
+                    type="radio"
+                    onClick={(e) => handlePay(e.target.value)}
+                    name="foobar"
+                    className="off"
+                    value={"cash"}
+                  />
                   Naqd pulda to'lash
                 </label>
                 <label class="radio">
-                  <input type="radio" name="foobar" className="on" checked />
+                  <input
+                    type="radio"
+                    onClick={(e) => handlePay(e.target.value)}
+                    name="foobar"
+                    className="on"
+                    value={"payme"}
+                  />
                   Payme
                   <img
                     src={payme}
                     width={"80px"}
                     style={{ marginLeft: "10px" }}
-                    alt=""
                   />
                 </label>
+                {inputValue.payment.length > 0 ? (
+                  ""
+                ) : (
+                  <p style={{ fontSize: "16px" }} className="form_error">
+                    iltimos tolov uslubini tanlang
+                  </p>
+                )}
               </div>
 
               <p className="order_box-text">

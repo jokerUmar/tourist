@@ -13,14 +13,12 @@ import SectionCard from "../sectionCard/SectionCard";
 import { LangContext } from "../context/LangContext";
 import { lang } from "../../lang/Lang";
 
-
 function MainV() {
   const [circleCount, setCircleCount] = useState(1);
 
   let { data } = useContext(DataContext);
   const { goToSlide, setGoToSlide } = useContext(CarouselShowContext);
   let { langData, setLangData } = useContext(LangContext);
-
 
   function handlePrev() {
     if (data.length - 1 != goToSlide) {
@@ -31,7 +29,6 @@ function MainV() {
       setGoToSlide(0);
     }
   }
-
 
   function handleMinus() {
     if (goToSlide > 0) {
@@ -131,10 +128,8 @@ function MainV() {
       </section>
 
       <Services />
- 
 
-      <SectionCard/>
-
+      <SectionCard />
     </>
   );
 }
