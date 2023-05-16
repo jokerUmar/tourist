@@ -1,28 +1,31 @@
-import React,{useContext} from "react";
+import React, { useContext, memo } from "react";
 import "./travel.css";
 import { Link, NavLink, useParams } from "react-router-dom";
 import SectionCard from "../sectionCard/SectionCard";
 import { MouseMOveContext } from "../context/MouseMoveContext";
 
 function Travel() {
+  let { moveMouse, setMoveMouse } = useContext(MouseMOveContext);
 
-  let {moveMouse,setMoveMouse} = useContext(MouseMOveContext)
-  
   function handleMove() {
-    setMoveMouse(true)
-}
-function handleLeave() {
-    setMoveMouse(false)
-}
+    setMoveMouse(true);
+  }
+  function handleLeave() {
+    setMoveMouse(false);
+  }
 
 
   return (
     <div className="travel">
       <div className="container">
-
         <h1 className="travel_title">sayohat</h1>
 
-        <div onMouseMove={handleMove} onMouseLeave={handleLeave} className="travel-box" style={moveMouse ? {display:'block'} : {display: "none  "} }>
+        <div
+          onMouseMove={handleMove}
+          onMouseLeave={handleLeave}
+          className="travel-box"
+          style={moveMouse ? { display: "block" } : { display: "none  " }}
+        >
           <NavLink to={"/travel/foreign"} className={"travel-foreign"}>
             <p>chet-elga sayohat</p>
           </NavLink>
@@ -31,11 +34,10 @@ function handleLeave() {
           </NavLink>
         </div>
 
-      <SectionCard/>
-
+        <SectionCard />
       </div>
     </div>
   );
 }
 
-export default Travel;
+export default memo(Travel);

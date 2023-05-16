@@ -10,14 +10,12 @@ import Contact from "./components/contact/Contact";
 import { BarsContext } from "./components/context/barsContext";
 import Footer from "./components/footer/Footer";
 import ContactPage from "./pages/contactPage/ContactPage";
-import TravelForeign from "./pages/travelForeign/TravelForeign";
-import TravelUzb from "./pages/travelUzb/TravelUzb";
 import Market from "./pages/market/Market";
 import Order from "./pages/Order/Order";
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
 
 function App() {
-  let { bars, setBars } = useContext(BarsContext);
+  let { setBars } = useContext(BarsContext);
 
   const [windowSize, setWindowSize] = useState(window.innerWidth);
 
@@ -39,6 +37,8 @@ function App() {
 
   const { pathname } = useLocation();
 
+  console.log("parent ren");
+
   return (
     <div className="App">
       <Header />
@@ -48,8 +48,6 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/travel" element={<Travel windowSize={windowSize} />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/travel/foreign" element={<TravelForeign />} />
-        <Route path="/travel/uzbekistan" element={<TravelUzb />} />
         <Route path="/market" element={<Market />} />
         <Route path="/checkout" element={<Order />} />
         <Route path="*" element={<PageNotFound />} />
@@ -67,9 +65,7 @@ function App() {
       pathname == "/travel" ||
       pathname == "/contact" ||
       pathname == "/market" ||
-      pathname == "/checkout" ||
-      pathname == "/travel-foreign" ||
-      pathname == "/travel-uzbekistan" ? (
+      pathname == "/checkout" ? (
         <Footer />
       ) : (
         ""

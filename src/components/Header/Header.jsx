@@ -18,6 +18,7 @@ import { BarsContext } from "../context/barsContext";
 import { DataContext } from "../context/DataContext";
 import { MouseMOveContext } from "../context/MouseMoveContext";
 import { LangContext } from "../context/LangContext";
+import { memo } from "react";
 
 function Header() {
   let { bars, setBars } = useContext(BarsContext);
@@ -34,6 +35,7 @@ function Header() {
   function handleLang(e) {
     setLangData(e.target.value);
   }
+
 
   return (
     <header className="header">
@@ -175,4 +177,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default memo(Header);

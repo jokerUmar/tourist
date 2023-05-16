@@ -85,3 +85,17 @@
 .about p{
     margin-bottom: 7px;
 }
+
+.social_contact{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width:160px;
+    margin-top: 10px;
+}
+
+.social_contact a{
+    text-decoration: none;
+    display: block;
+    color: black;
+}

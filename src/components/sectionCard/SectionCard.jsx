@@ -7,6 +7,7 @@ import { ArrayDataContext } from "../context/ArrayDataContext";
 import { SummaContext } from "../context/SummaContext";
 import { lang } from "../../lang/Lang";
 import { LangContext } from "../context/LangContext";
+import { memo } from "react";
 
 function SectionCard() {
   let { data } = useContext(DataContext);
@@ -62,4 +63,4 @@ function SectionCard() {
   );
 }
 
-export default SectionCard;
+export default memo(SectionCard);

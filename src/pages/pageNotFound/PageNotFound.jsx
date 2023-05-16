@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import "./page_notFound.css";
 
 function PageNotFound() {
@@ -107,4 +107,4 @@ function PageNotFound() {
   );
 }
 
-export default PageNotFound;
+export default memo(PageNotFound);

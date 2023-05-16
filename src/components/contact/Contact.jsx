@@ -4,6 +4,7 @@ import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import { lang } from '../../lang/Lang'
 import { LangContext } from '../context/LangContext'
+import { memo } from 'react'
 
 function Contact() {
 
@@ -57,4 +58,4 @@ return (
 )
 }
 
-export default Contact
+export default memo(Contact)

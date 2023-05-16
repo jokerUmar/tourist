@@ -7,6 +7,7 @@ import { SummaContext } from "../../components/context/SummaContext";
 import { Link } from "react-router-dom";
 import { lang } from "../../lang/Lang";
 import { LangContext } from "../../components/context/LangContext";
+import { memo } from "react";
 
 function Market() {
   let { arrayData, setArrayData } = useContext(ArrayDataContext);
@@ -46,6 +47,8 @@ function Market() {
     }
   }
   reverseNumArr.splice(0, 1);
+
+
 
   return (
     <div className="market">
@@ -128,4 +131,4 @@ function Market() {
   );
 }
 
-export default Market;
+export default memo(Market);

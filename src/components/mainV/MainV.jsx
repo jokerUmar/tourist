@@ -12,6 +12,7 @@ import Services from "../services/Services";
 import SectionCard from "../sectionCard/SectionCard";
 import { LangContext } from "../context/LangContext";
 import { lang } from "../../lang/Lang";
+import { memo } from "react";
 
 function MainV() {
   const [circleCount, setCircleCount] = useState(1);
@@ -134,4 +135,4 @@ function MainV() {
   );
 }
 
-export default MainV;
+export default memo(MainV);

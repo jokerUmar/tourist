@@ -9,6 +9,7 @@ import PhoneInput from "react-phone-input-2";
 import { lang } from "../../lang/Lang";
 import { LangContext } from "../../components/context/LangContext";
 import { Link } from "react-router-dom";
+import { memo } from "react";
 
 function Order() {
   const { arrayData } = useContext(ArrayDataContext);
@@ -188,7 +189,7 @@ function Order() {
       inputValue.mailIndex.bool == true &&
       inputValue.telNumber.bool == true &&
       inputValue.emailAddress.bool == true &&
-      inputValue.payment.length > 0 
+      inputValue.payment.length > 0
     ) {
       inputValue.clicked = true;
     } else {
@@ -201,6 +202,7 @@ function Order() {
     inputValue.payment = params;
     setInputValue({ ...inputValue });
   }
+
 
   return (
     <div className="order">
@@ -505,4 +507,4 @@ function Order() {
   );
 }
 
-export default Order;
+export default memo(Order);
