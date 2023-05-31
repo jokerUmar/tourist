@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useContext, useRef } from "react";
+import React, { useState, useMemo, useContext } from "react";
 import Select from "react-select";
 import "./order.css";
 import countryList from "react-select-country-list";
@@ -202,7 +202,6 @@ function Order() {
     inputValue.payment = params;
     setInputValue({ ...inputValue });
   }
-
 
   return (
     <div className="order">
@@ -506,5 +505,4 @@ function Order() {
     </div>
   );
 }
-
 export default memo(Order);

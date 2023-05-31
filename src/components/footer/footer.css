@@ -99,3 +99,8 @@
     display: block;
     color: black;
 }
+
+.social_contact a:hover{
+    transition: 0.1s;
+    color: #FF4E00;
+}
