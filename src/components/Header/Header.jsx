@@ -15,27 +15,16 @@ import {
   faCartShopping,
 } from "@fortawesome/free-solid-svg-icons";
 import { BarsContext } from "../context/barsContext";
-import { DataContext } from "../context/DataContext";
-import { MouseMOveContext } from "../context/MouseMoveContext";
 import { LangContext } from "../context/LangContext";
 import { memo } from "react";
 
 function Header() {
   let { bars, setBars } = useContext(BarsContext);
-  let { moveMouse, setMoveMouse } = useContext(MouseMOveContext);
   let { langData, setLangData } = useContext(LangContext);
-
-  function handleMove() {
-    setMoveMouse(true);
-  }
-  function handleLeave() {
-    setMoveMouse(false);
-  }
 
   function handleLang(e) {
     setLangData(e.target.value);
   }
-
 
   return (
     <header className="header">
@@ -51,7 +40,7 @@ function Header() {
                   transform: "translate(0px)",
                   transition: "0.3s",
                 }
-              : { transform: "translate(-200px)", transition: "0.3s" }
+              : { transform: "translateY(-100%)", transition: "0.3s" }
           }
         >
           <NavLink
@@ -106,8 +95,6 @@ function Header() {
           </NavLink>
 
           <NavLink
-            onMouseMove={handleMove}
-            onMouseLeave={handleLeave}
             to="/travel"
             style={({ isActive }) => {
               return {

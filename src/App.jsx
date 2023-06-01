@@ -37,8 +37,6 @@ function App() {
 
   const { pathname } = useLocation();
 
-  console.log("parent ren");
-
   return (
     <div className="App">
       <Header />

@@ -10,6 +10,8 @@ import { lang } from "../../lang/Lang";
 import { LangContext } from "../../components/context/LangContext";
 import { Link } from "react-router-dom";
 import { memo } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Order() {
   const { arrayData } = useContext(ArrayDataContext);
@@ -102,6 +104,8 @@ function Order() {
   function handleInput(params, e) {
     inputValue[params].title = e;
 
+    console.log(isValidEmail(inputValue[params].title));
+
     if (params == "name" && inputValue[params].title.length > 0) {
       inputValue[params].bool = true;
     } else if (params == "name" && inputValue[params].title.length == 0) {
@@ -167,10 +171,9 @@ function Order() {
     }
     if (params == "emailAddress" && isValidEmail(inputValue[params].title)) {
       inputValue[params].bool = true;
-      console.log("hehe");
     } else if (
-      params == "emailAddress" &&
-      inputValue[params].title.length == 0
+      params == "emailAddress" ||
+      !isValidEmail(inputValue[params].title)
     ) {
       inputValue[params].bool = false;
     }
@@ -192,16 +195,30 @@ function Order() {
       inputValue.payment.length > 0
     ) {
       inputValue.clicked = true;
+      toast.success("Success Notification !", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     } else {
       inputValue.clicked = false;
+      toast.error("Error Notification !", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
     setInputValue(JSON.parse(JSON.stringify(inputValue)));
   }
+
+  console.log(inputValue);
 
   function handlePay(params) {
     inputValue.payment = params;
     setInputValue({ ...inputValue });
   }
+
+  // const showToastMessage = () => {
+  //   toast.success("Success Notification !", {
+  //     position: toast.POSITION.TOP_RIGHT,
+  //   });
+  // };
 
   return (
     <div className="order">
@@ -480,10 +497,17 @@ function Order() {
                 описанных в нашей
               </p>
 
-              <div className="order-btn_box">
+              {/* <div className="order-btn_box">
                 <button onClick={handleClick} className="take-order-btn">
                   {lang[langData].checkout.btn}
                 </button>
+              </div> */}
+
+              <div className="order-btn_box">
+                <button className="take-order-btn" onClick={handleClick}>
+                  {lang[langData].checkout.btn}
+                </button>
+                <ToastContainer />
               </div>
             </div>
           </div>
