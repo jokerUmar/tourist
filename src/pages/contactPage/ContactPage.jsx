@@ -16,7 +16,6 @@ function ContactPage() {
 
   let { langData } = useContext(LangContext);
 
-
   return (
     <div className="contact-page">
       <div className="container">

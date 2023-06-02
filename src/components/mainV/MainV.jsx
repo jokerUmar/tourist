@@ -19,7 +19,7 @@ function MainV() {
 
   let { data } = useContext(DataContext);
   const { goToSlide, setGoToSlide } = useContext(CarouselShowContext);
-  let { langData} = useContext(LangContext);
+  let { langData } = useContext(LangContext);
 
   function handlePrev() {
     if (data.length - 1 != goToSlide) {

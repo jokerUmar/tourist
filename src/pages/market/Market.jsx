@@ -48,8 +48,6 @@ function Market() {
   }
   reverseNumArr.splice(0, 1);
 
-
-
   return (
     <div className="market">
       <div className="container">

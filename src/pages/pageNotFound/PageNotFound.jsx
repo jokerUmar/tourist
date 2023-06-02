@@ -56,7 +56,12 @@ function PageNotFound() {
           c0-1.534,1.244-2.778,2.778-2.778h13.889c1.534,0,2.778,1.244,2.778,2.778V93.75z"
               />
 
-              <circle className="lamp-light" cx="119.676" cy="44.22" r="40.51" />
+              <circle
+                className="lamp-light"
+                cx="119.676"
+                cy="44.22"
+                r="40.51"
+              />
               <path
                 className="lamp-details"
                 d="M149.306,71.528c0,3.242-13.37,13.889-29.861,13.889S89.583,75.232,89.583,71.528c0-4.166,13.369-13.889,29.861-13.889
@@ -70,10 +75,13 @@ function PageNotFound() {
                 r="65"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop offset="0%" style={{stopColor:"#FFFFFF", stopOpacity: 1}} />
+                <stop
+                  offset="0%"
+                  style={{ stopColor: "#FFFFFF", stopOpacity: 1 }}
+                />
                 <stop
                   offset="50%"
-                  style={{stopColor:"#EDEDED", stopOpacity: 0.5}}
+                  style={{ stopColor: "#EDEDED", stopOpacity: 0.5 }}
                 >
                   <animate
                     attributeName="stop-opacity"
@@ -84,7 +92,7 @@ function PageNotFound() {
                 </stop>
                 <stop
                   offset="100%"
-                  style={{stopColor:"#EDEDED", stopOpacity: 0}}
+                  style={{ stopColor: "#EDEDED", stopOpacity: 0 }}
                 />
               </radialGradient>
               <circle

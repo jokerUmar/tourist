@@ -1,5 +1,5 @@
 import Styles from "./Card.module.css";
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { useSpring, animated } from "react-spring";
 function Card({ imagen, title, cost_str, title_info }) {
   const [show, setShown] = useState(false);

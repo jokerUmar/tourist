@@ -1,12 +1,15 @@
 import Carousel from "react-spring-3d-carousel";
-import { useState, useEffect , useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { config } from "react-spring";
 import { CarouselShowContext } from "../context/carouselShowContext";
 
 export default function Carroussel(props) {
   const table = props.cards.map((element, index) => {
-    return { ...element, onClick: () => {setGoToSlide(index),
-        props.setCircleCount(index+1)}
+    return {
+      ...element,
+      onClick: () => {
+        setGoToSlide(index), props.setCircleCount(index + 1);
+      },
     };
   });
 
@@ -14,7 +17,7 @@ export default function Carroussel(props) {
   const [showArrows, setShowArrows] = useState(false);
   const [cards] = useState(table);
 
-  const {goToSlide, setGoToSlide} = useContext(CarouselShowContext)
+  const { goToSlide, setGoToSlide } = useContext(CarouselShowContext);
 
   useEffect(() => {
     setOffsetRadius(props.offset);
@@ -31,7 +34,7 @@ export default function Carroussel(props) {
         offsetRadius={offsetRadius}
         showNavigation={showArrows}
         animationConfig={config.gentle}
-        circleCount = {props.circleCount}
+        circleCount={props.circleCount}
       />
     </div>
   );
