@@ -12,7 +12,7 @@ import { lang } from "../../lang/Lang";
 import { LangContext } from "../../components/context/LangContext";
 import { useContext } from "react";
 function ContactPage() {
-  const [data, setData] = useState("");
+  const [setData] = useState("");
 
   let { langData } = useContext(LangContext);
 

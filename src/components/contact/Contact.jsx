@@ -8,7 +8,7 @@ import { memo } from 'react'
 
 function Contact() {
 
-const [data, setData] = useState("");
+const [setData] = useState("");
 
 let {langData} = useContext(LangContext)
 

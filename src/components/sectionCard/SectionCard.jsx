@@ -2,7 +2,6 @@ import React from "react";
 import "./section-card.css";
 import { DataContext } from "../context/DataContext";
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
 import { ArrayDataContext } from "../context/ArrayDataContext";
 import { SummaContext } from "../context/SummaContext";
 import { lang } from "../../lang/Lang";

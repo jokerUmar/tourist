@@ -1,6 +1,5 @@
-import React, { useContext, memo } from "react";
+import React, { memo } from "react";
 import "./travel.css";
-import { Link, NavLink, useParams } from "react-router-dom";
 import SectionCard from "../sectionCard/SectionCard";
 
 function Travel() {

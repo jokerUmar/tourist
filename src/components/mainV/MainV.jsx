@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer, useState } from "react";
+import React, { useContext, useState } from "react";
 import "./main.css";
 import { DataContext } from "../context/DataContext";
 import Carroussel from "../carousel/Carousel";
@@ -19,7 +19,7 @@ function MainV() {
 
   let { data } = useContext(DataContext);
   const { goToSlide, setGoToSlide } = useContext(CarouselShowContext);
-  let { langData, setLangData } = useContext(LangContext);
+  let { langData} = useContext(LangContext);
 
   function handlePrev() {
     if (data.length - 1 != goToSlide) {
