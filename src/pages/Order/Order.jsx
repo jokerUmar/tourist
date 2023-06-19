@@ -214,12 +214,6 @@ function Order() {
     setInputValue({ ...inputValue });
   }
 
-  // const showToastMessage = () => {
-  //   toast.success("Success Notification !", {
-  //     position: toast.POSITION.TOP_RIGHT,
-  //   });
-  // };
-
   return (
     <div className="order">
       {arrayData.length > 0 ? (
@@ -496,12 +490,6 @@ function Order() {
                 заказов, упрощения вашей работы с сайтом и для других целей,
                 описанных в нашей
               </p>
-
-              {/* <div className="order-btn_box">
-                <button onClick={handleClick} className="take-order-btn">
-                  {lang[langData].checkout.btn}
-                </button>
-              </div> */}
 
               <div className="order-btn_box">
                 <button className="take-order-btn" onClick={handleClick}>
